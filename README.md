@@ -20,7 +20,7 @@ Author: [*Diego Gutierrez*](https://www.linkedin.com/in/diego-gutierrez-1874b17b
 * [Data Sources & Schema](#data-sources--schema)
 * [Mage Orchestration](#mage-orchestration)
 * [Dashboard & Visualization](#dashboard--visualization)
-* [Further Ideas & Next Steps](#next-steps)
+* [Further Ideas & Next Steps](#further-ideas--next-steps)
 * [Acknowledgement & Credits](#acknowledgement--credits)
 
     >**NOTE;** _to skip the project overview & head staight to set up, click [here](setup.md)_
