@@ -1,0 +1,66 @@
+version: 2
+
+models:
+
+  - name: trips_gross_revenue
+    description: >
+      Calculated revenue for each trip according to customer and trip length.
+      Each record corresponds to a trip uniquely identified by tripid. 
+    columns:
+      - name: tripid
+        data_type: STRING
+        description: Unique trip identifier.
+        tests:
+          - unique:
+              severity: error
+          - not_null:
+              severity: error
+
+      - name: date
+        data_type: DATE
+        description: The date of the record.
+        tests:
+          - not_null:
+              severity: error
+
+      - name: driver
+        data_type: STRING
+        description: The name of the driver.
+        tests:
+          - not_null:
+              severity: error
+
+      - name: customer
+        data_type: STRING
+        description: The name of the customer.
+        tests:
+          - not_null:
+              severity: error
+  
+      - name: hours
+        data_type: FLOAT
+        description: The number of hours.
+        tests:
+          - not_null:
+              severity: error
+     
+      - name: km
+        data_type: INTEGER
+        description: The distance in kilometers.
+        tests:
+          - not_null:
+              severity: error
+
+      - name: trip_type
+        data_type: STRING
+        description: The trip type according to distance.
+        tests:
+          - not_null:
+              severity: error
+        
+      - name: total_gross_revenue
+        data_type: FLOAT
+        description: The calculated gross revenue.
+        tests:
+          - not_null:
+              severity: error

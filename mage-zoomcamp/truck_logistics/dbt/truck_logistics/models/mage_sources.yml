@@ -1,0 +1,14 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_truck_logistics
+  schema: truck_logistics
+  tables:
+  - description: Dataframe for block `export_gcs_to_bigquery_external_table` of the
+      `truck_logistics` mage pipeline.
+    identifier: mage_truck_logistics_export_gcs_to_bigquery_external_table
+    meta:
+      block_uuid: export_gcs_to_bigquery_external_table
+      pipeline_uuid: truck_logistics
+    name: truck_logistics_export_gcs_to_bigquery_external_table
+version: 2

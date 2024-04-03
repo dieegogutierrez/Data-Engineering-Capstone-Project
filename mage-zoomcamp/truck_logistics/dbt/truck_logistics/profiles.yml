@@ -1,0 +1,12 @@
+truck_logistics:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: {{ env_var("TF_VAR_project") }}
+      dataset: {{ env_var("TF_VAR_bq_dataset_name") }}
+      location: {{ env_var("TF_VAR_location") }}
+      region: {{ env_var("TF_VAR_region") }}
+      threads: 3
+      keyfile: {{ env_var("GOOGLE_APPLICATION_CREDENTIALS") }}

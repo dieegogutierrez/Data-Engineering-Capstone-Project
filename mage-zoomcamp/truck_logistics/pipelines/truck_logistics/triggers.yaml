@@ -1,0 +1,24 @@
+triggers:
+- envs: []
+  last_enabled_at: 2024-04-02 20:27:31.481893
+  name: run_pipeline
+  pipeline_uuid: truck_logistics
+  schedule_interval: null
+  schedule_type: api
+  settings: null
+  sla: null
+  start_time: 2024-04-02 20:26:00
+  status: active
+  variables: {}
+- envs: []
+  last_enabled_at: 2024-04-02 20:28:01.412258
+  name: weekly_trigger
+  pipeline_uuid: truck_logistics
+  schedule_interval: '@weekly'
+  schedule_type: time
+  settings:
+    landing_time_enabled: false
+  sla: null
+  start_time: 2024-03-31 00:00:00
+  status: active
+  variables: {}

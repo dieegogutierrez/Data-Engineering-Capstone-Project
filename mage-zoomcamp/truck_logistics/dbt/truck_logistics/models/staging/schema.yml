@@ -1,0 +1,97 @@
+version: 2
+
+sources:
+  - name: staging
+    database: '{{ env_var("TF_VAR_project") }}'
+    schema: '{{ env_var("TF_VAR_bq_dataset_name") }}'
+
+    tables:
+      - name: trip_data_external_table
+      - name: customer_rates_external_table
+
+models:
+  - name: stg_trip_data
+    description: Trip data of truck logistics.
+    columns:
+      - name: tripid
+        data_type: STRING
+        description: Unique trip identifier.
+
+      - name: date
+        data_type: DATE
+        description: The date of the record.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: driver
+        data_type: STRING
+        description: The name of the driver.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: customer
+        data_type: STRING
+        description: The name of the customer.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: hours
+        data_type: FLOAT
+        description: The number of hours.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: km
+        data_type: INTEGER
+        description: The distance in kilometers.
+        tests:
+          - not_null:
+              severity: warn
+              
+      - name: trip_type
+        data_type: STRING
+        description: The trip type according to distance.
+
+  - name: stg_customer_rates
+    description: Customer different rates.
+    columns:
+      - name: customer
+        data_type: STRING
+        description: The name of the customer.
+        tests:
+          - unique:
+              severity: warn
+          - not_null:
+              severity: warn
+
+      - name: hour_city
+        data_type: FLOAT
+        description: The hour rate for city trips.
+
+      - name: hour_regular
+        data_type: FLOAT
+        description: The hour rate for regular trips.
+
+      - name: hour_hy
+        data_type: FLOAT
+        description: The hour rate for highway trips.
+
+      - name: fsc_city
+        data_type: FLOAT
+        description: The fuel surcharge rate for city travel.
+
+      - name: fsc_regular
+        data_type: FLOAT
+        description: The fuel surcharge rate for regular travel.
+
+      - name: fsc_hy
+        data_type: FLOAT
+        description: The fuel surcharge rate for highway travel.
+
+      - name: hy_mileage
+        data_type: FLOAT
+        description: The highway mileage rate.
