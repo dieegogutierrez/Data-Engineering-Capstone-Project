@@ -70,5 +70,5 @@ cd mage-zoomcamp
 ```
 1. The script will run Terraform in Docker and create the infrastructure in Google Cloud, specifically, a storage bucket and a BigQuery dataset.
 2. Then, it will run the orchestrator MAGE, which will load local data, transform it, and export it to Google Cloud. Afterward, DBT will create models that will build a final table to be used on a dashboard.
-3. An API call will trigger the pipeline to run it once, otherwise you can access the orchestrator at http://localhost:6789/ and run the pipeline by yourself.
+3. Access the orchestrator at http://localhost:6789/ and run the pipeline by yourself.
 4. After completion, it will create a table named 'trips_gross_revenue' in BigQuery, which can be used in Looker Studio to build a dashboard.
