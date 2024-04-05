@@ -30,13 +30,13 @@ blocks:
   language: python
   name: transform_trip_data
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
   - load_local_csv_trip_data
   uuid: transform_trip_data
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks:
@@ -53,7 +53,7 @@ blocks:
   upstream_blocks:
   - transform_trip_data
   uuid: export_parquet_to_gcs
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     data_provider: bigquery
@@ -64,7 +64,7 @@ blocks:
     limit: 1000
     use_raw_sql: true
   downstream_blocks:
-  - dbt_seed
+  - dbt_deps
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -77,7 +77,33 @@ blocks:
   upstream_blocks:
   - export_parquet_to_gcs
   uuid: export_gcs_to_bigquery_external_table
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    dbt:
+      command: deps
+    dbt_profile_target: ''
+    dbt_project_name: dbt/truck_logistics
+    disable_query_preprocessing: false
+    export_write_policy: append
+    file_source:
+      path: dbts/dbt_deps.yaml
+    use_raw_sql: false
+  downstream_blocks:
+  - dbt_seed
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: dbt_deps
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - export_gcs_to_bigquery_external_table
+  uuid: dbt_deps
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     dbt:
@@ -99,9 +125,9 @@ blocks:
   timeout: null
   type: dbt
   upstream_blocks:
-  - export_gcs_to_bigquery_external_table
+  - dbt_deps
   uuid: dbt_seed
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     dbt:
