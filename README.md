@@ -8,7 +8,7 @@ Author: [*Diego Gutierrez*](https://www.linkedin.com/in/diego-gutierrez-1874b17b
 
 -------
 
-<img src="assets/trucks.jpeg" alt="Trucks" height="300" width="600">
+<img src="static/assets/trucks.jpeg" alt="Trucks" height="300" width="600">
 
 -----
 
@@ -21,7 +21,7 @@ Author: [*Diego Gutierrez*](https://www.linkedin.com/in/diego-gutierrez-1874b17b
 * [Mage Orchestration](#mage-orchestration)
 * [Dashboard & Visualization](#dashboard--visualization)
 * [Further Ideas & Next Steps](#further-ideas--next-steps)
-* [Acknowledgements & Credits](#acknowledgement--credits)
+* [Acknowledgements & Credits](#acknowledgements--credits)
 
     >**NOTE;** _to skip the project overview & head staight to set up, click [here](setup.md)_
 
@@ -29,7 +29,17 @@ Author: [*Diego Gutierrez*](https://www.linkedin.com/in/diego-gutierrez-1874b17b
 
 ### Problem statement 
 
-The necessity for developing a pipeline and dashboard for a truck logistics company stems from the imperative to efficiently collect, process, and disseminate critical information regarding transportation activities, especially revenue data from each customer. By establishing a comprehensive pipeline, which encompasses data acquisition, preprocessing, analysis, and visualization stages, alongside a user-friendly dashboard interface tailored for executives and senior management can access accurate insights into revenue generation, cost analysis, and overall operational performance. Such a system not only enhances strategic decision-making but also empowers executives to optimize resource allocation, identify growth opportunities, and ensure the financial success and sustainability of the truck logistics company.
+The necessity for developing a pipeline and dashboard for a truck logistics company stems from the imperative to efficiently collect, process, and disseminate critical information regarding transportation activities, especially revenue data from each customer. By establishing a comprehensive pipeline, which encompasses data acquisition, preprocessing, analysis, and visualization stages, alongside a user-friendly dashboard interface tailored for executives and senior management, the company can access accurate insights into revenue generation, cost analysis, and overall operational performance.
+
+This project is a full ETL (Extract, Transform, Load) pipeline designed to streamline and enhance the data processing capabilities of a truck logistics company. The project leverages several powerful technologies and tools to achieve its objectives:
+
+- Infrastructure Provisioning with Terraform: Terraform is used to create the necessary cloud infrastructure on Google Cloud Storage and BigQuery, ensuring a scalable and reliable environment for data processing and storage.
+
+- Data Orchestration with MAGE: MAGE, an advanced data orchestrator, is employed to automate the ETL process. It downloads a CSV file from the local machine, transforms it into a Parquet file, and loads it into Google Cloud Storage and BigQuery. This entire process is containerized and runs inside Docker, providing consistency and ease of deployment.
+
+- Analytics with dbt: dbt (Data Build Tool) is used to perform analytics on the data stored in BigQuery. This enables the creation of meaningful data models and transformations that drive deeper insights into the logistics operations.
+
+- Visualization with Looker Studio: Finally, Looker Studio is used to create interactive and user-friendly dashboards. These dashboards present key metrics and insights, enabling executives and senior management to make informed decisions based on real-time data.
 
 ______________________________________________
 
@@ -47,7 +57,7 @@ ______________________________________________
 
 ### Architecture Diagram
 
-<img src="assets/data_architecture.drawio.svg" alt="Data Architecture" height="300" width="600">
+<img src="static/assets/data_architecture.drawio.svg" alt="Data Architecture" height="300" width="600">
 
 ------------------------
 
@@ -80,7 +90,7 @@ ______________________________________________
 
 ### Mage Orchestration
 
-<img src="assets/pipeline.png" alt="Pipeline" height="300" width="600">
+<img src="static/assets/pipeline.png" alt="Pipeline" height="300" width="600">
 
 Mage operates within code blocks, and this pipeline utilizes Python, SQL, and DBT blocks in the following sequence:
 
@@ -88,8 +98,9 @@ Mage operates within code blocks, and this pipeline utilizes Python, SQL, and DB
 2. Perform transformations and create a Parquet file.
 3. Export the Parquet file to Google Cloud Storage.
 4. Create an external table in BigQuery using the Parquet file from the Google Cloud Storage bucket.
-5. Seed the customer_rates file into the DBT project.
-6. Create all DBT models.
+5. Install all dbt packages with dbt deps.
+6. Seed the customer_rates file into the DBT project.
+7. Create all DBT models.
     - Create staging models for both files, with additional columns such as tripid and trip_type for trip_data.
     - Create core model by joining both staging models and calculating revenue according to customer rules.
 
@@ -101,10 +112,8 @@ A dashboard has been developed using Google Looker Studio to visualise truck log
 
 Dashboard Link: [HERE](https://lookerstudio.google.com/s/pBt7UHZBg1k)
 
-<img src="assets/chart1.png" alt="Chart1" height="300" width="600">
-<img src="assets/chart2.png" alt="Chart2" height="300" width="600">
-<img src="assets/chart3.png" alt="Chart3" height="300" width="600">
-<img src="assets/chart4.png" alt="Chart4" height="300" width="600">
+<img src="static/assets/dashboard.png" alt="Chart1" height="300" width="600">
+
 
 -----------------------------
 
