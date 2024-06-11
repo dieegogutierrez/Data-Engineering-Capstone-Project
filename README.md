@@ -90,7 +90,7 @@ ______________________________________________
 
 ### Mage Orchestration
 
-<img src="static/assets/pipeline.png" alt="Pipeline" height="300" width="600">
+<img src="static/assets/pipeline.png" alt="Pipeline" height="600" width="300">
 
 Mage operates within code blocks, and this pipeline utilizes Python, SQL, and DBT blocks in the following sequence:
 
